@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Rick O. Gilmore" />
+  <title>The 3 R’s of open science</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="libs/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="libs/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">The 3 R’s of open science</h1>
+    <h2 class="author">Rick O. Gilmore</h2>
+    <h3 class="date">2018-10-07 11:42:37</h3>
+</section>
+
+<section><section id="preliminaries" class="titleslide slide level1"><h1>Preliminaries</h1></section><section class="slide level2">
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/8/87/NSF_Logo.PNG" height=150px> <img src="https://science.nichd.nih.gov/confluence/download/attachments/34472103/NICHD-vertical-2-color.png?version=1&modificationDate=1477410070000&api=v2" height=150px> </br> <img src="https://sloan.org/storage/app/media/Logos/Sloan-Logo-stacked-black-web.png" height=150px> <img src="http://newsroom.unl.edu/announce/files/file77330.jpg" height=150px/> <img src="https://www.unicef.org.hk/wp-content/uploads/2017/08/Logo-05_Lego-foundation_UNICEF_partnership.jpg" height=150px /> </br> <img src="https://nationalpress.org/wp-content/uploads/2016/04/NIDA-logo-300x300.jpg" height=150px/> <img src="http://bewellva.com/wp-content/uploads/2017/12/NIMH-Logo_14-e1510955490255.jpg" height=150px/></p>
+</section><section id="themes" class="slide level2">
+<h2>Themes</h2>
+<ol type="1">
+<li><strong>R</strong>eproducibility</li>
+<li><strong>R</strong>eproducible research with R and R Markdown</li>
+<li><strong>R</strong>egistered reports and pRe-registration</li>
+</ol>
+</section></section>
+<section><section id="reproducibility" class="titleslide slide level1"><h1>Reproducibility</h1></section><section class="slide level2">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/66oNv_DJuPc" frameborder="0" allowfullscreen>
+</iframe>
+<p><a href="https://www.youtube.com/embed/66oNv_DJuPc" class="uri">https://www.youtube.com/embed/66oNv_DJuPc</a></p>
+</section><section id="is-there-a-reproducibility-crisis" class="slide level2">
+<h2>Is there a reproducibility crisis?</h2>
+<ul>
+<li>Yes, a significant crisis</li>
+<li>Yes, a slight crisis</li>
+<li>No crisis</li>
+<li>Don’t know</li>
+</ul>
+</section><section class="slide level2">
+
+<div class="centered">
+<p><a href="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=450px> <img src="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=500px> </a></p>
+<p><a href="http://doi.org/10.1038/533452a">Baker 2016</a></p>
+</div>
+</section><section id="not-just-psychology" class="slide level2">
+<h2>Not just psychology</h2>
+<div class="centered">
+<p><a href="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg"> <img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=500px> </a></p>
+</section><section class="slide level2">
+
+<div class="centered">
+<p><img src="https://cdn.shopify.com/s/files/1/0877/5762/products/Rigor_Mortis_1024x1024.jpg?v=1491240110" height=500px/></p>
+</div>
+</section><section id="psychological-science-is-harder-than-physics" class="slide level2">
+<h2>Psychological science is harder than physics</h2>
+<p><img src="img/psych-harder-1.jpg" height=550px/></p>
+</section><section id="much-harder" class="slide level2">
+<h2>Much harder</h2>
+<p><img src="img/psych-harder-2.jpg" height=550px/></p>
+</section><section class="slide level2">
+
+<p><img src="https://www.rd.com/wp-content/uploads/2017/02/01-How-Bad-is-it-to-Share-a-Toothbrush-159311405-ABykov-760x506.jpg" height=500px/></p>
+</section><section class="slide level2">
+
+<blockquote>
+<p>“<em>…psychologists tend to treat other peoples’ theories like toothbrushes; no self-respecting individual wants to use anyone else’s.</em>”</p>
+</blockquote>
+<p><a href="https://www.psychologicalscience.org/observer/becoming-a-cumulative-science">(Mischel, 2009)</a></p>
+</section><section class="slide level2">
+
+<blockquote>
+<p>“<em>The toothbrush culture undermines the building of a genuinely cumulative science, encouraging more parallel play and solo game playing, rather than building on each other’s directly relevant best work.</em>”</p>
+</blockquote>
+<p><a href="https://www.psychologicalscience.org/observer/becoming-a-cumulative-science">(Mischel, 2009)</a></p>
+</section><section class="slide level2">
+
+<p><img src="img/chomsky_vs_skinner_tile_coaster.jpg" height=550px/> <img src="img/chomsky-o-skinner.jpg" height=550px/></p>
+<!-- (Inferred) mental states vs. (Observable) behaviors. Restoring behavior to psychology alongside internal mental (and neural) states -->
+</section><section class="slide level2">
+
+<div class="centered">
+<p><a href="http://www.apa.org/science/about/psa/2017/10/video-data.aspx"> <img src="img/video-as-data-doc.jpg" height=600px/></p>
+</div>
+</section><section id="why-is-reproducibility-hard" class="slide level2">
+<h2>Why is reproducibility hard?</h2>
+<div class="centered">
+<p><a href="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg"> <img src="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg" height=450px> </a></p>
+<p><a href="http://doi.org/10.1038/533452a">Baker 2016</a></p>
+</div>
+</section><section id="a-manifesto-for-reproducible-science" class="slide level2">
+<h2>A manifesto for reproducible science</h2>
+<div class="centered">
+<p><a href="http://www.nature.com/articles/s41562-016-0021/figures/1"> <img src="http://www.nature.com/article-assets/npg/nathumbehav/2017/s41562-016-0021/images_hires/w926/s41562-016-0021-f1.jpg" height=500px> </a></p>
+<p><a href="http://doi.org/10.1038/s41562-016-0021">(Munafo et al. 2017)</a></p>
+</div>
+</section><section id="what-do-we-mean-by-reproducibility" class="slide level2">
+<h2>What do we mean by ‘reproducibility’?</h2>
+<ul>
+<li><em>Methods</em> reproducibility
+<ul>
+<li>Enough details about materials &amp; methods recorded (&amp; reported)</li>
+<li>Same results with same materials &amp; methods</li>
+</ul></li>
+<li><em>Results</em> reproducibility
+<ul>
+<li>Same results from independent study -<em>Inferential</em> reproducibility</li>
+<li>Same inferences from one or more studies or reanalyses</li>
+</ul></li>
+</ul>
+<p><a href="http://doi.org/10.1126/scitranslmed.aaf5027">Goodman et al., 2016</a></p>
+</section><section id="achieving-methods-reproducibility" class="slide level2">
+<h2>Achieving <em>methods</em> reproducibility</h2>
+<ul>
+<li>Data collection</li>
+<li>Cleaning</li>
+<li>Visualization</li>
+<li>Analysis</li>
+<li>Reporting</li>
+<li>Manuscript, talk, poster preparation</li>
+</ul>
+</section><section class="slide level2">
+
+<div class="centered">
+<p><img src="http://www.clipartguide.com/_named_clipart_images/0511-0902-0200-0035_Black_and_White_Cartoon_of_a_Man_Just_Hit_By_a_Truck_clipart_image.jpg"/></p>
+</div>
+<blockquote>
+<p>No one is irreplaceable, but we can all strive to be indispensible.</p>
+</blockquote>
+</section></section>
+<section><section id="r-eproducible-research-with-r-rstudio-and-r-markdown" class="titleslide slide level1"><h1>R-eproducible research with R, RStudio, and R Markdown</h1></section><section id="why-r" class="slide level2">
+<h2>Why R?</h2>
+<ul>
+<li>It’s fun</li>
+<li>It’s free</li>
+<li>Amaze your friends; dazzle your rivals</li>
+<li>Powerful data manipulation, plotting, analysis</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img src="https://jdblischak.github.io/r-intermediate-altmetrics/fig/rstudio-full.png" height=550px/></p>
+<p><a href="http://rstudio.com">RStudio</a></p>
+</section><section id="why-rstudio" class="slide level2">
+<h2>Why <a href="http://rstudio.com">RStudio</a>?</h2>
+<ul>
+<li>Integrated development environment (IDE) for R</li>
+<li>It’s free, open source</li>
+<li>Suitable for beginners and experts</li>
+<li>Integration with <code>git</code> version control and <a href="http://github.com">GitHub</a></li>
+<li>Keep projects separate</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img src="img/recent-projects.jpg" width="100%" style="display: block; margin: auto;" /></p>
+</section><section id="reproducible-workflows" class="slide level2">
+<h2>Reproducible workflows</h2>
+<ul>
+<li>Scripted, automated = minimize human-dependent steps.</li>
+<li>Well-documented</li>
+<li>Kind to your future (forgetful) self</li>
+<li>Transparent to me &amp; colleagues == transparent to others</li>
+</ul>
+</section><section class="slide level2">
+
+<pre><code># Import/gather data
+
+# Clean data
+
+# Visualize data
+
+# Analyze data
+
+# Report findings</code></pre>
+</section><section class="slide level2">
+
+<pre><code># Import data
+my_data &lt;- read.csv(&quot;path/2/data_file.csv&quot;)
+
+# Clean data
+my_data$gender &lt;- tolower(my_data$gender) # make lower case
+...</code></pre>
+</section><section class="slide level2">
+
+<pre><code># Import data
+source(&quot;R/Import_data.R&quot;) # source() runs scripts, loads functions
+
+# Clean data
+source(&quot;R/Clean_data.R&quot;)
+
+# Visualize data
+source(&quot;R/Visualize_data.R&quot;)
+...</code></pre>
+</section><section id="objections" class="slide level2">
+<h2>Objections</h2>
+<ul>
+<li>But my SPSS syntax file already does this
+<ul>
+<li>Great! How are you sharing them?</li>
+</ul></li>
+<li>But I prefer {Python, Julia, Ruby, Matlab, …}
+<ul>
+<li>Great! Let’s talk about <a href="https://rmarkdown.rstudio.com/">R Markdown</a></li>
+</ul></li>
+</ul>
+</section><section id="reproducible-research-with-r-markdown" class="slide level2">
+<h2>Reproducible research with <a href="https://rmarkdown.rstudio.com/">R Markdown</a></h2>
+<ul>
+<li>Add-on package to R, developed by the RStudio team</li>
+<li>Combine text, code, images, video, equations into one document</li>
+<li>Render into PDF, MS Word, HTML (web page or site, slides, a blog, or even a book)</li>
+<li><a href="https://rmarkdown.rstudio.com/">R Markdown documentation</a>; online <a href="http://r4ds.had.co.nz/r-markdown.html">tutorial</a>; Mike Frank and Chris Hartgerink’s <a href="https://libscie.github.io/rmarkdown-workshop/handout.html">tutorial</a></li>
+<li>Similar to Mathematica notebooks, <a href="http://jupyter.org">Jupyter notebooks</a></li>
+</ul>
+</section><section class="slide level2">
+
+<p><img src="https://cdn.shopify.com/s/files/1/1657/2343/products/product-image-114090915_grande.jpg?v=1517721814" width="100%" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>One tool to rule them all and in the R-ness, bind them.</p>
+</blockquote>
+</section><section id="why-write-reproducible-papersreports-in-r-markdown" class="slide level2">
+<h2><em>Why</em> write reproducible papers/reports in R Markdown?</h2>
+<p><strong>The following is section is copied verbatim from <a href="https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd">Mike Frank &amp; Chris Hartgerink’s tutorial</a> on GitHub</strong>.</p>
+<blockquote>
+<p>There are three reasons to write reproducible papers. To be right, to be reproducible, and to be efficient. There are more, but these are convincing to us. In more depth:</p>
+</blockquote>
+</section><section class="slide level2">
+
+<blockquote>
+<p><strong>To avoid errors</strong>. Using an automated method for scraping APA-formatted stats out of PDFs, <a href="http://doi.org/10.3758/s13428-015-0664-2"><span class="citation" data-cites="Nuijten2015-ul">[@Nuijten2015-ul]</span></a> found that over 10% of p-values in published papers were inconsistent with the reported details of the statistical test, and 1.6% were what they called “grossly” inconsistent, e.g. difference between the p-value and the test statistic meant that one implied statistical significance and the other did not. Nearly half of all papers had errors in them.</p>
+</blockquote>
+</section><section class="slide level2">
+
+<blockquote>
+<p><strong>To promote computational reproducibility</strong>. Computational reproducibility means that other people can take your data and get the same numbers that are in your paper. Even if you don’t have errors, it can still be very hard to recover the numbers from published papers because of ambiguities in analysis. Creating a document that literally specifies where all the numbers come from in terms of code that operates over the data removes all this ambiguity.</p>
+</blockquote>
+</section><section class="slide level2">
+
+<blockquote>
+<p><strong>To create spiffy documents that can be revised easily</strong>. This is actually a really big neglected one for us. At least one of us used to tweak tables and figures by hand constantly, leading to a major incentive never to rerun analyses because it would mean re-pasting and re-illustratoring all the numbers and figures in a paper. That’s a bad thing! It means you have an incentive to be lazy and to avoid redoing your stuff. And you waste tons of time when you do. In contrast, with a reproducible document, you can just rerun with a tweak to the code. You can even specify what you want the figures and tables to look like before you’re done with all the data collection (e.g., for purposes of preregistraion or a registered report).</p>
+</blockquote>
+</section><section id="the-future-of-reproducible-workflows" class="slide level2">
+<h2>The future of reproducible workflows</h2>
+<video width="900" data-autoplay>
+<source src="../mov/summarize_demog.mp4" type="video/mp4">
+</video>
+<p></br> <a href="http://github.com/PLAY-behaviorome/databraryapi" class="uri">http://github.com/PLAY-behaviorome/databraryapi</a></p>
+</section><section id="ways-to-use-r-markdown" class="slide level2">
+<h2>Ways to use R Markdown</h2>
+<ul>
+<li><a href="http://gilmore-lab.github.io/">Web pages</a> | <a href="https://raw.githubusercontent.com/gilmore-lab/gilmore-lab.github.io/master/index.Rmd">Rmd</a></li>
+<li><a href="https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd">Talks</a></li>
+<li><a href="https://github.com/gilmore-lab/infant-moco-eeg/blob/master/plan-of-work.Rmd">Project notes</a></li>
+<li>Figures. <a href="https://raw.githubusercontent.com/PLAY-behaviorome/site-demographics/master/educational_attainment.Rmd">Rmd</a> | <a href="https://github.com/PLAY-behaviorome/site-demographics/blob/master/img/ed-attain-bars-plot-1.pdf">PDF</a></li>
+<li>Papers. <a href="https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2018/master/talks/gilmore-hallquist-bootcamp-2018-papaja.Rmd">Rmd</a> | <a href="https://github.com/psu-psychology/r-bootcamp-2018/blob/master/talks/gilmore-hallquist-bootcamp-2018-papaja.pdf">PDF</a></li>
+</ul>
+</section><section id="learning-more-about-r-markdown" class="slide level2">
+<h2>Learning more about R Markdown</h2>
+<p><img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" height=300px/></p>
+<ul>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">Online book</a></li>
+</ul>
+</section></section>
+<section><section id="registered-reports-and-pre-registration" class="titleslide slide level1"><h1>Registered reports and pre-registration</h1></section><section id="what" class="slide level2">
+<h2>What</h2>
+<p><img src="https://cdn.cos.io/media/images/registered_reports.width-800.png" style="display: block; margin: auto;" /></p>
+<p><a href="https://cos.io/rr/" class="uri">https://cos.io/rr/</a></p>
+</section><section class="slide level2">
+
+<p><img src="img/infancy.jpg" width="415" style="display: block; margin: auto;" /></p>
+<p><a href="https://onlinelibrary.wiley.com/page/journal/15327078/homepage/ForAuthors.html" class="uri">https://onlinelibrary.wiley.com/page/journal/15327078/homepage/ForAuthors.html</a></p>
+</section><section id="why" class="slide level2">
+<h2>Why</h2>
+<ul>
+<li>Nosek: “Don’t fool yourself”</li>
+<li>Separate <em>confirmatory</em> from <em>exploratory</em> analyses</li>
+<li>Confirmatory (hypothesis-driven): <em>p</em>-hacking matters</li>
+<li>Exploratory: <em>p</em>-values hard(er) to interpret</li>
+</ul>
+</section><section id="howwhere" class="slide level2">
+<h2>How/where</h2>
+<ul>
+<li>OSF: <a href="http://help.osf.io/m/registrations/l/524205-register-your-project" class="uri">http://help.osf.io/m/registrations/l/524205-register-your-project</a></li>
+<li><a href="https://aspredicted.org/">AsPredicted.org</a></li>
+</ul>
+</section><section class="slide level2">
+
+<p><img src="img/as-predicted-1.jpg"
+
+---
+
+<img src="img/as-predicted-2.jpg" height=550px/></p>
+</section><section class="slide level2">
+
+<p><img src="img/as-predicted-3.jpg" height=550px/></p>
+</section><section class="slide level2">
+
+<p><img src="img/as-predicted-4.jpg" height=550px/></p>
+</section><section class="slide level2">
+
+<video width="800" loop data-autoplay>
+<p><source src="../mov/databrary-splash.mp4" type="video/mp4"></p>
+<p><a href="mailto:rogilmore@psu.edu">rogilmore@psu.edu</a></p>
+<p><a href="https://gilmore-lab.github.io" class="uri">https://gilmore-lab.github.io</a></p>
+<p><a href="https://gilmore-lab.github.io/DEVSEC-2018/promise-of-open-dev-sci/" class="uri">https://gilmore-lab.github.io/DEVSEC-2018/promise-of-open-dev-sci/</a></p>
+</section><section class="slide level2">
+
+<p>This talk was produced on 2018-10-07 11:42:37 in <a href="http://rstudio.com">RStudio 1.1.453</a> using R Markdown and the reveal.JS framework. The code and materials used to generate the slides may be found at <a href="https://github.com/gilmore-lab/DEVSEC-2018/promise-of-open-dev-sci/" class="uri">https://github.com/gilmore-lab/DEVSEC-2018/promise-of-open-dev-sci/</a>. Information about the R Session that produced the slides is as follows:</p>
+</section><section class="slide level2">
+
+<pre><code>## R version 3.5.1 (2018-07-02)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS Sierra 10.12.6
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] revealjs_0.9
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.5.1  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
+##  [5] tools_3.5.1     htmltools_0.3.6 yaml_2.2.0      Rcpp_0.12.18   
+##  [9] stringi_1.2.4   rmarkdown_1.10  jpeg_0.1-8      knitr_1.20     
+## [13] stringr_1.3.1   digest_0.6.16   evaluate_0.11</code></pre>
+</section></section>
+    </div>
+  </div>
+
+  <script src="libs/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="libs/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'libs/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: 'libs/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

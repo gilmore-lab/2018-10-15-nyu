@@ -1,0 +1,431 @@
+---
+title: "The 3 R's of open science"
+author: "Rick O. Gilmore"
+date: "`r Sys.time()`"
+output:
+  revealjs::revealjs_presentation:
+    self_contained: false
+    lib_dir: libs
+    incremental: false
+    theme: simple
+    transition: none
+    reveal_plugins: ["notes", "zoom"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: false
+      center: true
+      touch: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+if(!("revealjs" %in% installed.packages()[,1])) {
+  install.packages("revealjs") }
+require("revealjs")
+```
+
+# Preliminaries
+
+---
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/87/NSF_Logo.PNG" height=150px>
+<img src="https://science.nichd.nih.gov/confluence/download/attachments/34472103/NICHD-vertical-2-color.png?version=1&modificationDate=1477410070000&api=v2" height=150px>
+</br>
+<img src="https://sloan.org/storage/app/media/Logos/Sloan-Logo-stacked-black-web.png" height=150px>
+<img src="http://newsroom.unl.edu/announce/files/file77330.jpg" height=150px/>
+<img src="https://www.unicef.org.hk/wp-content/uploads/2017/08/Logo-05_Lego-foundation_UNICEF_partnership.jpg" height=150px />
+</br>
+<img src="https://nationalpress.org/wp-content/uploads/2016/04/NIDA-logo-300x300.jpg" height=150px/>
+<img src="http://bewellva.com/wp-content/uploads/2017/12/NIMH-Logo_14-e1510955490255.jpg" height=150px/>
+
+## Themes
+
+1. **R**eproducibility
+2. **R**eproducible research with R and R Markdown
+3. **R**egistered reports and pRe-registration
+
+# Reproducibility
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/66oNv_DJuPc" frameborder="0" allowfullscreen></iframe>
+
+<https://www.youtube.com/embed/66oNv_DJuPc>
+
+## Is there a reproducibility crisis?
+
+- Yes, a significant crisis
+- Yes, a slight crisis
+- No crisis
+- Don't know
+
+---
+
+<div class="centered">
+<a href="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=450px>
+<img src="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=500px>
+</a>
+
+[Baker 2016](http://doi.org/10.1038/533452a)
+</div>
+
+## Not just psychology
+
+<div class="centered">
+<a href="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg">
+<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=500px>
+</a>
+
+---
+
+<div class="centered">
+<img src="https://cdn.shopify.com/s/files/1/0877/5762/products/Rigor_Mortis_1024x1024.jpg?v=1491240110" height=500px/>
+</div>
+
+## Psychological science is harder than physics
+
+<img src="img/psych-harder-1.jpg" height=550px/>
+
+## Much harder
+
+<img src="img/psych-harder-2.jpg" height=550px/>
+
+---
+
+<img src="https://www.rd.com/wp-content/uploads/2017/02/01-How-Bad-is-it-to-Share-a-Toothbrush-159311405-ABykov-760x506.jpg" height=500px/>
+
+---
+
+> "*...psychologists tend to treat other peoples’ theories like toothbrushes; no self-respecting individual wants to use anyone else’s.*"
+
+[(Mischel, 2009)](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)
+
+---
+
+> "*The toothbrush culture undermines the building of a genuinely cumulative science, encouraging more parallel play and solo game playing, rather than building on each other’s directly relevant best work.*"
+
+[(Mischel, 2009)](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)
+
+---
+
+<img src="img/chomsky_vs_skinner_tile_coaster.jpg" height=550px/>
+<img src="img/chomsky-o-skinner.jpg" height=550px/>
+
+<!-- (Inferred) mental states vs. (Observable) behaviors. Restoring behavior to psychology alongside internal mental (and neural) states -->
+
+---
+
+<div class="centered">
+<a href="http://www.apa.org/science/about/psa/2017/10/video-data.aspx">
+<img src="img/video-as-data-doc.jpg" height=600px/>
+</div>
+
+## Why is reproducibility hard?
+
+<div class="centered">
+<a href="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg">
+<img src="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg" height=450px>
+</a>
+
+[Baker 2016](http://doi.org/10.1038/533452a)
+</div>
+
+## A manifesto for reproducible science
+
+<div class="centered">
+<a href="http://www.nature.com/articles/s41562-016-0021/figures/1">
+<img src="http://www.nature.com/article-assets/npg/nathumbehav/2017/s41562-016-0021/images_hires/w926/s41562-016-0021-f1.jpg" height=500px>
+</a>
+
+[(Munafo et al. 2017)](http://doi.org/10.1038/s41562-016-0021)
+</div>
+
+## What do we mean by 'reproducibility'?
+
+- *Methods* reproducibility
+    - Enough details about materials & methods recorded (& reported)
+    - Same results with same materials & methods
+- *Results* reproducibility
+    - Same results from independent study
+-*Inferential* reproducibility
+    - Same inferences from one or more studies or reanalyses
+
+[Goodman et al., 2016](http://doi.org/10.1126/scitranslmed.aaf5027)
+
+## Achieving *methods* reproducibility
+
+- Data collection
+- Cleaning
+- Visualization
+- Analysis
+- Reporting
+- Manuscript, talk, poster preparation
+
+---
+
+<div class="centered">
+<img src="http://www.clipartguide.com/_named_clipart_images/0511-0902-0200-0035_Black_and_White_Cartoon_of_a_Man_Just_Hit_By_a_Truck_clipart_image.jpg"/>
+</div>
+
+> No one is irreplaceable, but we can all strive to be indispensible.
+
+# R-eproducible research with R, RStudio, and R Markdown
+
+## Why R?
+
+- It's fun
+- It's free
+- Amaze your friends; dazzle your rivals
+- Powerful data manipulation, plotting, analysis
+
+---
+
+<img src="https://jdblischak.github.io/r-intermediate-altmetrics/fig/rstudio-full.png" height=550px/>
+
+[RStudio](http://rstudio.com)
+
+## Why [RStudio](http://rstudio.com)?
+
+- Integrated development environment (IDE) for R
+- It's free, open source
+- Suitable for beginners and experts
+- Integration with `git` version control and [GitHub](http://github.com)
+- Keep projects separate
+
+---
+
+```{r, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("img/recent-projects.jpg")
+```
+
+## Reproducible workflows
+
+- Scripted, automated = minimize human-dependent steps.
+- Well-documented
+- Kind to your future (forgetful) self
+- Transparent to me & colleagues == transparent to others
+
+---
+
+```
+# Import/gather data
+
+# Clean data
+
+# Visualize data
+
+# Analyze data
+
+# Report findings
+```
+
+---
+
+```
+# Import data
+my_data <- read.csv("path/2/data_file.csv")
+
+# Clean data
+my_data$gender <- tolower(my_data$gender) # make lower case
+...
+```
+
+---
+
+```
+# Import data
+source("R/Import_data.R") # source() runs scripts, loads functions
+
+# Clean data
+source("R/Clean_data.R")
+
+# Visualize data
+source("R/Visualize_data.R")
+...
+```
+
+## Objections
+
+- But my SPSS syntax file already does this
+    - Great! How are you sharing them?
+- But I prefer {Python, Julia, Ruby, Matlab, ...}
+    - Great! Let's talk about [R Markdown](https://rmarkdown.rstudio.com/)
+
+## Reproducible research with [R Markdown](https://rmarkdown.rstudio.com/)
+
+- Add-on package to R, developed by the RStudio team
+- Combine text, code, images, video, equations into one document
+- Render into PDF, MS Word, HTML (web page or site, slides, a blog, or even a book)
+- [R Markdown documentation](https://rmarkdown.rstudio.com/); online [tutorial](http://r4ds.had.co.nz/r-markdown.html); Mike Frank and Chris Hartgerink's [tutorial](https://libscie.github.io/rmarkdown-workshop/handout.html)
+- Similar to Mathematica notebooks, [Jupyter notebooks](http://jupyter.org)
+
+---
+
+```{r, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("https://cdn.shopify.com/s/files/1/1657/2343/products/product-image-114090915_grande.jpg?v=1517721814")
+```
+
+> One tool to rule them all and in the R-ness, bind them.
+
+## *Why* write reproducible papers/reports in R Markdown?
+
+**[Mike Frank & Chris Hartgerink's tutorial](https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd) on GitHub**.
+
+> There are three reasons to write reproducible papers. To be right, to be reproducible, and to be efficient. There are more, but these are convincing to us. In more depth:
+
+---
+
+> **To avoid errors**. Using an automated method for scraping APA-formatted stats out of PDFs, [Nuijten et al. 2015](http://doi.org/10.3758/s13428-015-0664-2) found that over 10% of p-values in published papers were inconsistent with the reported details of the statistical test, and 1.6% were what they called "grossly" inconsistent, e.g. difference between the p-value and the test statistic meant that one implied statistical significance and the other did not. 
+Nearly half of all papers had errors in them.
+
+---
+
+> **To promote computational reproducibility**. 
+Computational reproducibility means that other people can take your data and get the same numbers that are in your paper. 
+Even if you don't have errors, it can still be very hard to recover the numbers from published papers because of ambiguities in analysis. 
+Creating a document that literally specifies where all the numbers come from in terms of code that operates over the data removes all this ambiguity.
+
+---
+
+> **To create spiffy documents that can be revised easily**. 
+This is actually a really big neglected one for us. 
+At least one of us used to tweak tables and figures by hand constantly, leading to a major incentive never to rerun analyses because it would mean re-pasting and re-illustratoring all the numbers and figures in a paper. 
+That's a bad thing! 
+It means you have an incentive to be lazy and to avoid redoing your stuff. And you waste tons of time when you do. 
+In contrast, with a reproducible document, you can just rerun with a tweak to the code. You can even specify what you want the figures and tables to look like before you're done with all the data collection (e.g., for purposes of preregistraion or a registered report).
+
+## Ways to use R Markdown
+
+- [Web pages](http://gilmore-lab.github.io/) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/gilmore-lab.github.io/master/index.Rmd)
+- [Talks](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd)
+- [Project notes](https://github.com/gilmore-lab/infant-moco-eeg/blob/master/plan-of-work.Rmd)
+- [Documentation]. [Rmd](https://raw.githubusercontent.com/gilmore-lab/databrary-reqmts-specs/master/databrary_1.0.Rmd) | [HTML](https://gilmore-lab.github.io/databrary-reqmts-specs/databrary_1.0.html)
+
+## Ways to use R Markdown
+
+- Figures. [Rmd](https://raw.githubusercontent.com/PLAY-behaviorome/site-demographics/master/educational_attainment.Rmd) | [PDF](https://github.com/PLAY-behaviorome/site-demographics/blob/master/img/ed-attain-bars-plot-1.pdf)
+- Scriptable timelines from Datavyu files. [Rmd](https://github.com/PLAY-behaviorome/video-coding/blob/master/video-code-file-export-cleaning.Rmd) | [Example](https://github.com/PLAY-behaviorome/video-coding/blob/master/NYU020-timeline.md)
+- Papers. [Rmd](https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2018/master/talks/gilmore-hallquist-bootcamp-2018-papaja.Rmd) | [PDF](https://github.com/psu-psychology/r-bootcamp-2018/blob/master/talks/gilmore-hallquist-bootcamp-2018-papaja.pdf)
+
+## The future of R-reproducible workflows
+
+````
+databraryapi::login_db("rogilmore@psu.edu")
+```
+
+<https://github.com/PLAY-behaviorome/databraryapi>
+
+---
+
+```{r}
+lego_vol <- 563
+list_volume_metadata(lego_vol)
+```
+
+---
+
+```{r}
+summarize_volume(lego_vol)
+```
+
+---
+
+```{r}
+play_pilot_vol <- 444
+session_id <- 18825
+list_assets_in_session(session.id = session_id, vol.id = play_pilot_vol)
+```
+
+---
+
+```
+rmarkdown::render('PLAY-LEGO-report.Rmd', params = list(db_account = "rogilmore@psu.edu"))
+```
+
+[Rendered Report in HTML](gilmore-lab.github.io/2018-10-15-nyu/PLAY-LEGO-report.html)
+<!-- Download Datavyu spreadsheet and manipulate it. -->
+
+## The future of reproducible workflows
+
+<video width="900" data-autoplay>
+  <source src="../mov/summarize_demog.mp4" type="video/mp4">
+</video>
+</br>
+<http://github.com/PLAY-behaviorome/databraryapi>
+
+
+## Learning more about R Markdown
+
+<img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" height=300px/>
+
+- [Online book](https://bookdown.org/yihui/rmarkdown/)
+
+# Registered reports and pre-registration
+
+## What
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics("https://cdn.cos.io/media/images/registered_reports.width-800.png")
+```
+
+<https://cos.io/rr/>
+
+---
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics("img/infancy.jpg")
+```
+
+<https://onlinelibrary.wiley.com/page/journal/15327078/homepage/ForAuthors.html>
+
+## Why
+
+- Nosek: "Don't fool yourself"
+- Separate *confirmatory* from *exploratory* analyses
+- Confirmatory (hypothesis-driven): *p*-hacking matters
+- Exploratory: *p*-values hard(er) to interpret
+
+## How/where
+
+- OSF: <http://help.osf.io/m/registrations/l/524205-register-your-project>
+- [AsPredicted.org](https://aspredicted.org/)
+
+---
+
+<img src="img/as-predicted-1.jpg"
+
+---
+
+<img src="img/as-predicted-2.jpg" height=550px/>
+
+---
+
+<img src="img/as-predicted-3.jpg" height=550px/>
+
+---
+
+<img src="img/as-predicted-4.jpg" height=550px/>
+
+---
+
+<video width="800" loop data-autoplay>
+  <source src="../mov/databrary-splash.mp4" type="video/mp4">
+
+rogilmore@psu.edu
+
+<https://gilmore-lab.github.io>
+
+<https://gilmore-lab.github.io/DEVSEC-2018/promise-of-open-dev-sci/>
+
+---
+
+This talk was produced on `r Sys.time()` in [RStudio 1.1.453](http://rstudio.com) using R Markdown and the reveal.JS framework.
+The code and materials used to generate the slides may be found at <https://github.com/gilmore-lab/DEVSEC-2018/promise-of-open-dev-sci/>. 
+Information about the R Session that produced the slides is as follows:
+
+---
+
+```{r session-info}
+sessionInfo()
+```

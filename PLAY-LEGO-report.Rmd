@@ -1,0 +1,238 @@
+---
+title: "PLAY/LEGO report"
+author: "Rick Gilmore"
+date: "`r Sys.time()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+    df_print: paged
+params: 
+  db_account: email@domain.com
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+pilot.vol.id <- 444
+nichd.vol.id <- 254
+lego.vol.id <- 563
+library(tidyverse)
+library(databraryapi)
+library(ggplot2)
+login_db(params$db_account)
+```
+
+# PLAY pilot summary data
+
+## Demographic summary
+
+```{r gest-age-hist}
+pilot_demog <- summarize_demog(vol.id = pilot.vol.id, return.df = TRUE)
+
+pilot_demog %>% 
+  ggplot(.) +
+  aes(x = participant.gestational.age, y = participant.birth.weight, color = participant.race) +
+  geom_point()
+```
+
+```{r age-by-gender}
+pilot_demog %>%
+  ggplot(.) +
+  aes(x = age.weeks, fill = participant.gender) +
+  geom_histogram()
+```
+
+## Parent-report variables
+
+```{r}
+survey.session.id <- 26295
+list_assets_in_session(vol.id = pilot.vol.id, session.id = survey.session.id) %>%
+  select(asset.name, asset.type, asset.id)
+```
+
+```{r}
+(csv_fl <- list.files('csv', '\\.csv$', full.names = TRUE)) 
+```
+
+```{r}
+lang_exp <- read_csv(csv_fl[1])
+str(lang_exp)
+```
+
+```{r}
+play.palette <- scale_fill_manual(values=c("blue2", "firebrick2", "chartreuse2", "darkorchid2"))
+
+play.theme <-   
+  theme_classic() +
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.text = element_text(size = rel(1.2)),
+        axis.title = element_text(size = rel(1.5), face ="bold"),
+        axis.text.x = element_text(size = rel(1.2)),
+        axis.text.y = element_text(size = rel(1.2)),
+        axis.line = element_blank(),
+        axis.title.y = element_blank())
+
+lang_exp %>%
+  ggplot(.) +
+  aes(x = language) +
+  facet_grid(exposure_context ~ .) +
+  geom_histogram(stat='count') +
+  play.theme
+```
+
+```{r}
+loco_onset <- read_csv(csv_fl[3])
+str(loco_onset)
+```
+```{r}
+loco_onset %>%
+  gather(key = milestone, value = age.mos, hkcrawl_onset_mos, walk_onset_mos) %>%
+  mutate(milestone = factor(milestone, labels = c("crawl", "walk"))) %>%
+  # arrange(desc(age.mos)) %>%
+  ggplot() +
+  aes(x = age.mos, y = id) +
+  geom_point(aes(shape = milestone, color = milestone)) +
+  geom_line(aes(group = id)) +
+  xlab("Age (months)") +
+  geom_rug(aes(x = age.mos, group = milestone, color = milestone),
+           sides = "b") +
+  play.theme
+```
+
+
+# LEGO
+
+```{r}
+lego_demog <- databraryapi::summarize_demog(vol.id = lego.vol.id, return.df = TRUE)
+
+lego_demog %>%
+  ggplot(.) +
+  aes(y = age.weeks, x = group.name) +
+  geom_boxplot()
+```
+
+```{r, race-by-gender}
+lego_demog %>%
+  ggplot(.) +
+  aes(participant.gender, fill = participant.gender) +
+  facet_grid(participant.race ~ group.name) +
+  geom_bar()
+```
+
+# Individual-specific reports from PLAY
+
+Let's focus on [NYU_019 in volume 254](https://nyu.databrary.org/volume/254/slot/14514/-)
+
+## Videos
+
+### Child view
+
+<video controls>
+  <source src="https://nyu.databrary.org/slot/14514/69908000,73576800/asset/61054/download?inline=true" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+### Experimenter view
+
+<video controls>
+  <source src="https://nyu.databrary.org/slot/14514/69908000,73623840/asset/61086/download?inline=true" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+## Assets in session
+
+```{r}
+vol_254_assets <- list_assets_in_session(254, 14514)
+vol_254_assets %>%
+  select(., asset.name, asset.type, asset.id)
+```
+
+## Process Datavyu
+
+### Download
+```{r}
+unlink('tmp', recursive = TRUE)
+dv_info <- filter(vol_254_assets, asset.type == "Datavyu")
+dv_dir <- download_datavyu(vol.id = 254, session.id = 14514, asset.id = dv_info$asset.id)
+```
+
+### Extract codes and code definitions
+
+Now, let's extract the components of the Datavyu file, including the code definitions.
+
+```{r}
+extract_dv(in.dir = dv_dir, auto.write.over = TRUE)
+dv_to_csv(dv.dir = dv_dir)
+list.files('tmp')
+```
+
+Next, we can load the Datavyu file as a csv.
+
+```{r}
+dv_fn <- list.files('tmp', '\\.csv$', full.names = TRUE)
+vol_254_14514 <- read_csv(dv_fn)
+str(vol_254_14514)
+```
+
+```{r}
+vol_254_14514
+```
+
+```{r}
+extract_dv_code_defs(in.dir = 'tmp')
+code_fn <- list.files('tmp', '-code-defs\\.csv$', full.names = TRUE)
+vol_254_14514_codes <- read_csv(code_fn)
+vol_254_14514_codes
+```
+
+### Visualize clips from specific codes
+
+Let's look at the baby's locomotion (`babyloc`) code.
+
+```{r}
+(babyloc <- filter(vol_254_14514, code == 'babyloc'))
+# Surrounding assignment w/ parentheses also prints out the assigned value.)
+```
+
+Let's look at the code values.
+
+```{r}
+unique(babyloc$code.value) 
+```
+
+Focus on holds `h` because there are fewer of them.
+
+```{r}
+# Select segments for this code
+(babyloc_segs <- dplyr::filter(babyloc, code.value == 'h'))
+```
+
+### Download video segment corresponding to one or more of these codes
+
+Let's pick the second segment just for fun.
+
+```{r}
+# What is the segment range for the video?
+seg_range <- get_asset_segment_range(vol.id = 254, session.id = 14514, asset.id = 61054)
+start_ms <- HHMMSSmmm_to_ms(babyloc_segs$onset[2]) + seg_range[1]
+end_ms <- HHMMSSmmm_to_ms(babyloc_segs$offset[2]) + seg_range[1]
+selected_seg <- paste0(start_ms, ",", end_ms)
+```
+
+Now download the video.
+
+```{r}
+#download_video(254, 14514, 61054, out.dir = 'tmp', segment.id = selected_seg)
+```
+
+And see if we can display the downloaded copy.
+
+<video controls>
+  <source src="https://nyu.databrary.org/slot/14514/71873879,71875206/asset/61054/download?inline=true" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
