@@ -129,14 +129,14 @@ Let's focus on [NYU_019 in volume 254](https://nyu.databrary.org/volume/254/slot
 
 ## Videos
 
-### Child view
+### [Child view](https://nyu.databrary.org/slot/14514/69908000,73576800/asset/61054/download?inline=true)
 
 <video controls>
   <source src="https://nyu.databrary.org/slot/14514/69908000,73576800/asset/61054/download?inline=true" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
-### Experimenter view
+### [Experimenter view](https://nyu.databrary.org/slot/14514/69908000,73623840/asset/61086/download?inline=true)
 
 <video controls>
   <source src="https://nyu.databrary.org/slot/14514/69908000,73623840/asset/61086/download?inline=true" type="video/mp4">
@@ -229,10 +229,9 @@ Now download the video.
 #download_video(254, 14514, 61054, out.dir = 'tmp', segment.id = selected_seg)
 ```
 
-And see if we can display the downloaded copy.
+And see if we can display video or if needed, [go to it on Databrary](https://nyu.databrary.org/slot/14514/71873879,71875206/asset/61054/download?inline=true).
 
 <video controls>
   <source src="https://nyu.databrary.org/slot/14514/71873879,71875206/asset/61054/download?inline=true" type="video/mp4">
 Your browser does not support the video tag.
 </video>
-
