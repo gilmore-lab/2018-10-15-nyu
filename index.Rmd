@@ -346,15 +346,6 @@ rmarkdown::render('PLAY-LEGO-report.Rmd', params = list(db_account = "rogilmore@
 [Rendered Report in HTML](gilmore-lab.github.io/2018-10-15-nyu/PLAY-LEGO-report.html)
 <!-- Download Datavyu spreadsheet and manipulate it. -->
 
-## The future of reproducible workflows
-
-<video width="900" data-autoplay>
-  <source src="../mov/summarize_demog.mp4" type="video/mp4">
-</video>
-</br>
-<http://github.com/PLAY-behaviorome/databraryapi>
-
-
 ## Learning more about R Markdown
 
 <img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" height=300px/>
@@ -416,7 +407,7 @@ rogilmore@psu.edu
 
 <https://gilmore-lab.github.io>
 
-<https://gilmore-lab.github.io/DEVSEC-2018/promise-of-open-dev-sci/>
+<https://gilmore-lab.github.io/2018-10-15-nyu/>
 
 ---
 
