@@ -15,6 +15,8 @@ output:
       previewLinks: false
       center: true
       touch: true
+params: 
+  db_account: rogilmore@psu.edu
 ---
 
 ```{r setup, include=FALSE}
@@ -22,7 +24,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 if(!("revealjs" %in% installed.packages()[,1])) {
   install.packages("revealjs") }
-require("revealjs")
+library(revealjs)
+library(databraryapi)
+library(tidyverse)
+library(knitr)
+if (!databraryapi::login_db(params$db_account))
+  message('Login failure, will only show public assets.')
 ```
 
 # Preliminaries
@@ -74,7 +81,7 @@ require("revealjs")
 
 <div class="centered">
 <a href="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg">
-<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=500px>
+<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=525px>
 </a>
 
 ---
@@ -116,6 +123,10 @@ require("revealjs")
 
 ---
 
+$States_{internal} + States_{external} = \Psi_{better}$
+
+---
+
 <div class="centered">
 <a href="http://www.apa.org/science/about/psa/2017/10/video-data.aspx">
 <img src="img/video-as-data-doc.jpg" height=600px/>
@@ -125,13 +136,13 @@ require("revealjs")
 
 <div class="centered">
 <a href="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg">
-<img src="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg" height=450px>
+<img src="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg" height=500px>
 </a>
 
 [Baker 2016](http://doi.org/10.1038/533452a)
 </div>
 
-## A manifesto for reproducible science
+## Risks from idea to product
 
 <div class="centered">
 <a href="http://www.nature.com/articles/s41562-016-0021/figures/1">
@@ -148,7 +159,7 @@ require("revealjs")
     - Same results with same materials & methods
 - *Results* reproducibility
     - Same results from independent study
--*Inferential* reproducibility
+- *Inferential* reproducibility
     - Same inferences from one or more studies or reanalyses
 
 [Goodman et al., 2016](http://doi.org/10.1126/scitranslmed.aaf5027)
@@ -165,10 +176,14 @@ require("revealjs")
 ---
 
 <div class="centered">
-<img src="http://www.clipartguide.com/_named_clipart_images/0511-0902-0200-0035_Black_and_White_Cartoon_of_a_Man_Just_Hit_By_a_Truck_clipart_image.jpg"/>
+<img src="http://www.clipartguide.com/_named_clipart_images/0511-0902-0200-0035_Black_and_White_Cartoon_of_a_Man_Just_Hit_By_a_Truck_clipart_image.jpg" height=400px/>
 </div>
 
 > No one is irreplaceable, but we can all strive to be indispensible.
+
+---
+
+> What's your project's 'bus number'?
 
 # R-eproducible research with R, RStudio, and R Markdown
 
@@ -190,8 +205,8 @@ require("revealjs")
 - Integrated development environment (IDE) for R
 - It's free, open source
 - Suitable for beginners and experts
-- Integration with `git` version control and [GitHub](http://github.com)
-- Keep projects separate
+- Integration with `git` version control and [GitHub](http://github.com) web repository
+- Projects management: Keep projects separate
 
 ---
 
@@ -259,12 +274,36 @@ source("R/Visualize_data.R")
 - Render into PDF, MS Word, HTML (web page or site, slides, a blog, or even a book)
 - [R Markdown documentation](https://rmarkdown.rstudio.com/); online [tutorial](http://r4ds.had.co.nz/r-markdown.html); Mike Frank and Chris Hartgerink's [tutorial](https://libscie.github.io/rmarkdown-workshop/handout.html)
 - Similar to Mathematica notebooks, [Jupyter notebooks](http://jupyter.org)
+- R Markdown extends Markdown
+
+## R Markdown syntax
+
+```
+- List item 1
+- List item 2
+
+**Bold text** and *italicized text* and ~~struck-through text~~
+
+`Monospace font for code or computer commands`
+
+> Box quote
+
+```
 
 ---
 
-```{r, echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("https://cdn.shopify.com/s/files/1/1657/2343/products/product-image-114090915_grande.jpg?v=1517721814")
-```
+- List item 1
+- List item 2
+
+**Bold text** and *italicized text* and ~~struck-through text~~
+
+`Monospace font for code or computer commands`
+
+> Box quote
+
+---
+
+<img src="https://cdn.shopify.com/s/files/1/1657/2343/products/product-image-114090915_grande.jpg?v=1517721814" height=500px/>
 
 > One tool to rule them all and in the R-ness, bind them.
 
@@ -291,66 +330,101 @@ Creating a document that literally specifies where all the numbers come from in 
 > **To create spiffy documents that can be revised easily**. 
 This is actually a really big neglected one for us. 
 At least one of us used to tweak tables and figures by hand constantly, leading to a major incentive never to rerun analyses because it would mean re-pasting and re-illustratoring all the numbers and figures in a paper. 
-That's a bad thing! 
-It means you have an incentive to be lazy and to avoid redoing your stuff. And you waste tons of time when you do. 
+
+---
+
+> That's a bad thing! It means you have an incentive to be lazy and to avoid redoing your stuff. And you waste tons of time when you do. 
 In contrast, with a reproducible document, you can just rerun with a tweak to the code. You can even specify what you want the figures and tables to look like before you're done with all the data collection (e.g., for purposes of preregistraion or a registered report).
 
 ## Ways to use R Markdown
 
-- [Web pages](http://gilmore-lab.github.io/) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/gilmore-lab.github.io/master/index.Rmd)
-- [Talks](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd)
+- Web [pages](http://gilmore-lab.github.io/) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/gilmore-lab.github.io/master/index.Rmd)
+- [Talks](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd)
 - [Project notes](https://github.com/gilmore-lab/infant-moco-eeg/blob/master/plan-of-work.Rmd)
-- [Documentation]. [Rmd](https://raw.githubusercontent.com/gilmore-lab/databrary-reqmts-specs/master/databrary_1.0.Rmd) | [HTML](https://gilmore-lab.github.io/databrary-reqmts-specs/databrary_1.0.html)
+- Documentation: [HTML](https://gilmore-lab.github.io/databrary-reqmts-specs/databrary_1.0.html) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/databrary-reqmts-specs/master/databrary_1.0.Rmd)
 
 ## Ways to use R Markdown
 
-- Figures. [Rmd](https://raw.githubusercontent.com/PLAY-behaviorome/site-demographics/master/educational_attainment.Rmd) | [PDF](https://github.com/PLAY-behaviorome/site-demographics/blob/master/img/ed-attain-bars-plot-1.pdf)
-- Scriptable timelines from Datavyu files. [Rmd](https://github.com/PLAY-behaviorome/video-coding/blob/master/video-code-file-export-cleaning.Rmd) | [Example](https://github.com/PLAY-behaviorome/video-coding/blob/master/NYU020-timeline.md)
-- Papers. [Rmd](https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2018/master/talks/gilmore-hallquist-bootcamp-2018-papaja.Rmd) | [PDF](https://github.com/psu-psychology/r-bootcamp-2018/blob/master/talks/gilmore-hallquist-bootcamp-2018-papaja.pdf)
+- Scriptable figures: [PDF](https://github.com/PLAY-behaviorome/site-demographics/blob/master/img/ed-attain-bars-plot-1.pdf) | [Rmd](https://raw.githubusercontent.com/PLAY-behaviorome/site-demographics/master/educational_attainment.Rmd)
+- Scriptable timelines from Datavyu files: [Example](https://github.com/PLAY-behaviorome/video-coding/blob/master/NYU020-timeline.md) | [Rmd](https://github.com/PLAY-behaviorome/video-coding/blob/master/video-code-file-export-cleaning.Rmd) 
+- Papers: [PDF](https://github.com/psu-psychology/r-bootcamp-2018/blob/master/talks/gilmore-hallquist-bootcamp-2018-papaja.pdf) | [Rmd](https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2018/master/talks/gilmore-hallquist-bootcamp-2018-papaja.Rmd)
 
 ## The future of R-reproducible workflows
 
-````
+```
+# Login to Databrary
+
 databraryapi::login_db("rogilmore@psu.edu")
+
+# Download data
+
+# Process data
 ```
 
 <https://github.com/PLAY-behaviorome/databraryapi>
 
 ---
 
-```{r}
+```{r, echo=TRUE}
 lego_vol <- 563
-list_volume_metadata(lego_vol)
+databraryapi::list_volume_metadata(lego_vol) %>% 
+  kable()
 ```
 
 ---
 
-```{r}
-summarize_volume(lego_vol)
+```{r, echo=TRUE}
+databraryapi::summarize_demog(lego_vol)
 ```
 
 ---
 
-```{r}
+```{r, echo=TRUE}
 play_pilot_vol <- 444
 session_id <- 18825
-list_assets_in_session(session.id = session_id, vol.id = play_pilot_vol)
+(vol_444_sess_18825_assets <- databraryapi::list_assets_in_session(session.id = session_id,
+                                                                   vol.id = play_pilot_vol))
 ```
 
----
+## Report on PLAY pilots and LEGO data
 
 ```
 rmarkdown::render('PLAY-LEGO-report.Rmd', params = list(db_account = "rogilmore@psu.edu"))
 ```
 
-[Rendered Report in HTML](gilmore-lab.github.io/2018-10-15-nyu/PLAY-LEGO-report.html)
+[Rendered Report in HTML](https://gilmore-lab.github.io/2018-10-15-nyu/PLAY-LEGO-report.html)
 <!-- Download Datavyu spreadsheet and manipulate it. -->
+
+## But my advisor prefers MS Word...
+
+```
+rmarkdown::render('PLAY-LEGO-report.Rmd', 
+                  params = list(db_account = "rogilmore@psu.edu"),
+                  output_format = "word_document")
+```
+
+[MS Word version](PLAY-LEGO-report.docx)
+
+## Key points
+
+- Databrary API returns video/audio *segments*
+- Video/audio segments can be extracted automatically from a Datavyu file
+- (Soon) export updated Datavyu file with Databrary URIs
+- R Markdown document can render code in [other languages](https://bookdown.org/yihui/rmarkdown/language-engines.html), including Python, bash, Octave, Julia, Haskell, JavaScript, ...)
+- Same input -> multiple output formats
+
+## Data repositories as 'platforms for discovery'
+
+- Curate your data once for future sharing, use it many times
+- Send colleagues/collaborators URIs for specific clips *without having to do any video editing*
+- Separate data (needing protection) from analysis code
+- R Markdown documents (and Jupyter notebooks) as self-documenting records
 
 ## Learning more about R Markdown
 
-<img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" height=300px/>
+<img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" height=400px/>
 
-- [Online book](https://bookdown.org/yihui/rmarkdown/)
+[Online book](https://bookdown.org/yihui/rmarkdown/)
 
 # Registered reports and pre-registration
 
@@ -364,11 +438,11 @@ knitr::include_graphics("https://cdn.cos.io/media/images/registered_reports.widt
 
 ---
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height='100%'}
 knitr::include_graphics("img/infancy.jpg")
 ```
 
-<https://onlinelibrary.wiley.com/page/journal/15327078/homepage/ForAuthors.html>
+[Infancy Author Guidelines](https://onlinelibrary.wiley.com/page/journal/15327078/homepage/ForAuthors.html)
 
 ## Why
 
@@ -398,10 +472,30 @@ knitr::include_graphics("img/infancy.jpg")
 
 <img src="img/as-predicted-4.jpg" height=550px/>
 
+## Who is and is not
+
+- Mike Frank (former skeptic, now advocate), ["Pregister everything"](http://babieslearninglanguage.blogspot.com/2016/07/preregister-everything.html)
+- Susan Goldin-Meadow (skeptic), ["Why pregistration makes me nervous"](https://www.psychologicalscience.org/observer/why-preregistration-makes-me-nervous)
+
+# Psychological science (esp. developmental) can be a leader in the development of **r**obust and **r**eproducible **r**esearch practices
+
+---
+
+> "*The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity. We regard scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy.*"
+
+SRCD Task Force on Scientific Integrity and Openness
+
+---
+
+>"*the principles of human subject research require an analysis of both risks and benefits...such an analysis suggests that researchers may have a positive duty to share data in order to maximize the contribution that individual participants have made.*"
+
+<small>([Brakewood & Poldack, 2013](http://dx.doi.org/10.1016/j.neuroimage.2013.02.040))</small>
+
 ---
 
 <video width="800" loop data-autoplay>
-  <source src="../mov/databrary-splash.mp4" type="video/mp4">
+  <source src="https://github.com/gilmore-lab/DEVSEC-2018/blob/master/mov/databrary-splash.mp4?raw=true" type="video/mp4">
+  </video>
 
 rogilmore@psu.edu
 
