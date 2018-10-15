@@ -91,13 +91,13 @@ if (!databraryapi::login_db(params$db_account))
 
 <div class="centered">
 <a href="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg">
-<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=525px>
+<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=600px>
 </a>
 
 ---
 
 <div class="centered">
-<img src="https://cdn.shopify.com/s/files/1/0877/5762/products/Rigor_Mortis_1024x1024.jpg?v=1491240110" height=500px/>
+<img src="https://cdn.shopify.com/s/files/1/0877/5762/products/Rigor_Mortis_1024x1024.jpg?v=1491240110" height=600px/>
 </div>
 
 ---
@@ -129,7 +129,7 @@ if (!databraryapi::login_db(params$db_account))
 
 ---
 
-<img src="https://www.rd.com/wp-content/uploads/2017/02/01-How-Bad-is-it-to-Share-a-Toothbrush-159311405-ABykov-760x506.jpg" height=500px/>
+<img src="https://www.rd.com/wp-content/uploads/2017/02/01-How-Bad-is-it-to-Share-a-Toothbrush-159311405-ABykov-760x506.jpg" height=600px/>
 
 ---
 
@@ -145,26 +145,32 @@ if (!databraryapi::login_db(params$db_account))
 
 ---
 
-<img src="img/chomsky_vs_skinner_tile_coaster.jpg" height=550px/>
-<img src="img/chomsky-o-skinner.jpg" height=550px/>
+<img src="img/chomsky_vs_skinner_tile_coaster.jpg" height=550/>
+<img src="img/chomsky-o-skinner.jpg" height=550/>
 
 <!-- (Inferred) mental states vs. (Observable) behaviors. Restoring behavior to psychology alongside internal mental (and neural) states -->
 
 ---
 
 <div class="centered">
-<img src="http://cdn2.hubspot.net/hub/134568/file-1208368053-jpg/6-blind-men-hans.jpg" height=550px>
+<img src="http://cdn2.hubspot.net/hub/134568/file-1208368053-jpg/6-blind-men-hans.jpg" height=600px>
 </div>
 
 <!-- Blind men and the elephant -->
 
----
+## What do we measure, what do we infer?
 
-$States_{int} \in \{thoughts, feelings, perceptions,...\}$
+- Behaviors
+- Brain/physiological states
+- Thought processes, feelings, opinions, ...
 
-$States_{ext} \in \{movements, postures, expressions, vocalizations,...\}$
+<!-- --- -->
 
-$States_{int} + States_{ext} = \Psi_{better}$
+<!-- $States_{int} \in \{thoughts, feelings, perceptions,...\}$ -->
+
+<!-- $States_{ext} \in \{movements, postures, expressions, vocalizations,...\}$ -->
+
+<!-- $States_{int} + States_{ext} = \Psi_{better}$ -->
 
 ---
 
@@ -561,6 +567,11 @@ knitr::include_graphics("https://cdn.cos.io/media/images/registered_reports.widt
 - Susan Goldin-Meadow (skeptic), ["Why pregistration makes me nervous"](https://www.psychologicalscience.org/observer/why-preregistration-makes-me-nervous)
 - Mike Frank (former skeptic, now advocate), ["Pregister everything"](http://babieslearninglanguage.blogspot.com/2016/07/preregister-everything.html)
 
+## (Pre)registration and video-based discovery science
+
+- Code development & refinement: Exploratory
+- Coding & analysis: Confirmatory
+
 # Psychological science can lead the development of **r**obust and **r**eproducible **r**esearch practices
 
 ---
@@ -604,7 +615,6 @@ Ossmy, Gilmore, & Adolph (in press)
 <!-- We don't have to have physics envy -->
 
 ---
-
 
 > "The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity. We regard scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy."
 

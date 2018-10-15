@@ -11,7 +11,7 @@ output:
     code_folding: hide
     df_print: paged
 params: 
-  db_account: email@domain.com
+  db_account: rogilmore@psu.edu
 ---
 
 ```{r setup, include=FALSE}
