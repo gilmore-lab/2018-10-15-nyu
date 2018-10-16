@@ -4,6 +4,7 @@ author: "Rick O. Gilmore"
 date: "`r Sys.time()`"
 output:
   revealjs::revealjs_presentation:
+    css: styles.css
     self_contained: false
     lib_dir: libs
     incremental: false
@@ -51,12 +52,12 @@ if (!databraryapi::login_db(params$db_account))
 </br>
 <img src="https://sloan.org/storage/app/media/Logos/Sloan-Logo-stacked-black-web.png" height=150px>
 <img src="http://newsroom.unl.edu/announce/files/file77330.jpg" height=150px/>
-<img src="https://www.unicef.org.hk/wp-content/uploads/2017/08/Logo-05_Lego-foundation_UNICEF_partnership.jpg" height=150px />
+<img src="https://www.unicef.org.hk/wp-content/uploads/2017/08/Logo-05_Lego-foundation_UNICEF_partnership.jpg" height=150px/>
 </br>
 <img src="https://nationalpress.org/wp-content/uploads/2016/04/NIDA-logo-300x300.jpg" height=150px/>
 <img src="http://bewellva.com/wp-content/uploads/2017/12/NIMH-Logo_14-e1510955490255.jpg" height=150px/>
 
-## Themes
+## Themes {.bigger}
 
 1. **R**eproducibility
 2. **R**eproducible research with R and R Markdown
@@ -81,17 +82,17 @@ if (!databraryapi::login_db(params$db_account))
 
 <div class="centered">
 <a href="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=450px>
-<img src="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=500px>
+<img src="http://www.nature.com/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg" height=550px>
 </a>
 
-[Baker 2016](http://doi.org/10.1038/533452a)
+<small>[Baker 2016](http://doi.org/10.1038/533452a)</small>
 </div>
 
-## Not just psychology
+---
 
 <div class="centered">
 <a href="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg">
-<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height=600px>
+<img src="http://www.nature.com/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" width=800px>
 </a>
 
 ---
@@ -100,14 +101,14 @@ if (!databraryapi::login_db(params$db_account))
 <img src="https://cdn.shopify.com/s/files/1/0877/5762/products/Rigor_Mortis_1024x1024.jpg?v=1491240110" height=600px/>
 </div>
 
----
+<!-- Rigor Mortis -->
 
 ## Studies are underpowered
 
 <div class="centered">
 <img src="http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797.g003&type=large" height=500px>
 
-[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)
+<small>[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)</small>
 </div>
 
 ---
@@ -115,17 +116,17 @@ if (!databraryapi::login_db(params$db_account))
 <div class="centered">
 > "Assuming a realistic range of prior probabilities for null hypotheses, false report probability is likely to exceed 50% for the whole literature."
 
-[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)
+<small>[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)</small>
 </div>
 
 
-## Psychological science is harder than physics
+## Physics is hard
 
-<img src="img/psych-harder-1.jpg" height=550px/>
+<img src="img/psych-harder-1.jpg" height=500px/>
 
-## Much harder
+## Psychology is harder
 
-<img src="img/psych-harder-2.jpg" height=550px/>
+<img src="img/psych-harder-2.jpg" height=500px/>
 
 ---
 
@@ -135,13 +136,13 @@ if (!databraryapi::login_db(params$db_account))
 
 > "*...psychologists tend to treat other peoples’ theories like toothbrushes; no self-respecting individual wants to use anyone else’s.*"
 
-[Mischel, 2009](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)
+<small>[Mischel, 2009](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)</small>
 
 ---
 
 > "*The toothbrush culture undermines the building of a genuinely cumulative science, encouraging more parallel play and solo game playing, rather than building on each other’s directly relevant best work.*"
 
-[Mischel, 2009](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)
+<small>[Mischel, 2009](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)</small>
 
 ---
 
@@ -176,65 +177,82 @@ if (!databraryapi::login_db(params$db_account))
 
 <div class="centered">
 <a href="http://www.apa.org/science/about/psa/2017/10/video-data.aspx">
-<img src="img/video-as-data-doc.jpg" height=600px/>
+<img src="img/video-as-data-doc.jpg" height=750px/>
 </div>
 
-## Why is reproducibility hard?
+---
 
 <div class="centered">
 <a href="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg">
-<img src="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg" height=500px>
+<img src="http://www.nature.com/polopoly_fs/7.36719.1464174488!/image/reproducibility-graphic-online4.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online4.jpg" width=800px>
 </a>
 
-[Baker 2016](http://doi.org/10.1038/533452a)
+<small>[Baker 2016](http://doi.org/10.1038/533452a)</small>
 </div>
 
-## Risks across the lifecycle
+---
 
 <div class="centered">
 <a href="http://www.nature.com/articles/s41562-016-0021/figures/1">
 <img src="http://www.nature.com/article-assets/npg/nathumbehav/2017/s41562-016-0021/images_hires/w926/s41562-016-0021-f1.jpg" height=500px>
 </a>
 
-[Munafo et al. 2017](http://doi.org/10.1038/s41562-016-0021)
+<small>[Munafo et al. 2017](http://doi.org/10.1038/s41562-016-0021)</small>
 </div>
 
 ## What do we mean by 'reproducibility'?
 
-- *Inferential* reproducibility
-    - Same inferences from one or more studies or reanalyses
-- *Results* reproducibility
-    - Same results from independent study
-- *Methods* reproducibility
-    - Enough details about materials & methods recorded (& reported)
-    - Same results with same materials & methods
-
 [Goodman et al., 2016](http://doi.org/10.1126/scitranslmed.aaf5027)
+
+## *Inferential* reproducibility
+    
+- Same inferences from one or more studies or reanalyses
+
+<small>[Goodman et al., 2016](http://doi.org/10.1126/scitranslmed.aaf5027)</small>
+
+## *Results* reproducibility
+
+- Same results from independent study
+
+<small>[Goodman et al., 2016](http://doi.org/10.1126/scitranslmed.aaf5027)</small>
+
+## *Methods* reproducibility
+    
+- Enough details about materials & methods recorded (& reported)
+- Same results with same materials & methods
+
+<small>[Goodman et al., 2016](http://doi.org/10.1126/scitranslmed.aaf5027)</small>
 
 ## Why should we care?
 
->- What's true (where, when, for whom, and why)?
->- What's not?
+- What's true (where, when, for whom, and why)?
+- What's not?
 
-## What is the sampling distribution of effect sizes under replication?
+## Many Labs
 
 <img src="https://econtent.hogrefe.com/na101/home/literatum/publisher/hogrefe/journals/content/zsp/2014/zsp.2014.45.issue-3/1864-9335_a000178/20150727/images/large/zsp_45_3_142_fig1a.jpeg"/>
 
-[Klein et al. 2014](http://econtent.hogrefe.com/doi/abs/10.1027/1864-9335/a000178)
+<small>[Klein et al. 2014](http://econtent.hogrefe.com/doi/abs/10.1027/1864-9335/a000178)</small>
 
 ---
 
 ## Reproducibility Project: Psychology (RPP)
 
-> "We conducted replications of 100...studies published in three psychology journals using high-powered designs and original materials when available....The mean effect size (r) of the replication effects...was half the magnitude of the mean effect size of the original effects...39% of effects were subjectively rated to have replicated the original result; and...combining original and replication results left 68% with statistically significant effects."
+> "*...The mean effect size (r) of the replication effects...was half the magnitude of the mean effect size of the original effects...*"
 
-[Open Science Collaboration, 2015](http://science.sciencemag.org/content/349/6251/aac4716)
+<small>[Open Science Collaboration, 2015](http://science.sciencemag.org/content/349/6251/aac4716)</small>
 
-## [Camerer et al. 2018](https://www.nature.com/articles/s41562-018-0399-z)
+---
+
+> "*...39% of effects were subjectively rated to have replicated the original result...*"
+
+<small>[Open Science Collaboration, 2015](http://science.sciencemag.org/content/349/6251/aac4716)</small>
+
+---
 
 <img src="https://mfr.osf.io/export?url=https://osf.io/fg4d3/?action=download%26mode=render%26direct%26public_file=True&initialWidth=698&childId=mfrIframe&parentTitle=OSF+%7C+F1+-+EffectSizes.png&parentUrl=https://osf.io/fg4d3/&format=2400x2400.jpeg" height=550px/>
 
-[Camerer et al. 2018](https://www.nature.com/articles/s41562-018-0399-z)
+<small>[Camerer et al. 2018](https://www.nature.com/articles/s41562-018-0399-z)</small>
 
 <!-- Figure from Camerer et al. 2018 -->
 
@@ -242,7 +260,7 @@ if (!databraryapi::login_db(params$db_account))
 
 <img src="https://mfr.osf.io/export?url=https://osf.io/8pc9x/?action=download%26mode=render%26direct%26public_file=True&initialWidth=698&childId=mfrIframe&parentTitle=OSF+%7C+F4+-+PeerBeliefs.png&parentUrl=https://osf.io/8pc9x/&format=2400x2400.jpeg" height=550px/>
 
-[Camerer et al. 2018](https://www.nature.com/articles/s41562-018-0399-z)
+<small>[Camerer et al. 2018](https://www.nature.com/articles/s41562-018-0399-z)</small>
 
 ## If it's too good to be true, it probably isn't
 
@@ -289,7 +307,7 @@ if (!databraryapi::login_db(params$db_account))
 - Integrated development environment (IDE) for R
 - It's free, open source
 - Suitable for beginners and experts
-- Integration with `git` version control and [GitHub](http://github.com) web repository
+- Integration with git version control and [GitHub](http://github.com) web repository
 - Projects management: Keep projects separate
 
 ---
@@ -344,18 +362,23 @@ source("R/Visualize_data.R")
 ...
 ```
 
-## Objections
+## But my SPSS syntax file already does this
+    
+- Great! How are you sharing these files?
+- (And how much would SPSS cost you if you had to buy it yourself?)
 
-- But my SPSS syntax file already does this
-    - Great! How are you sharing these files?
-- But I prefer {Python, Julia, Ruby, Matlab, ...}
-    - Great! Let's talk about [R Markdown](https://rmarkdown.rstudio.com/)
+## But I prefer {Python, Julia, Ruby, Matlab, ...}
+
+- Great! Let's talk about [R Markdown](https://rmarkdown.rstudio.com/)
 
 ## Reproducible research with [R Markdown](https://rmarkdown.rstudio.com/)
 
 - Add-on package to R, developed by the RStudio team
 - Combine text, code, images, video, equations into one document
 - Render into PDF, MS Word, HTML (web page or site, slides, a blog, or even a book)
+
+---
+
 - [R Markdown documentation](https://rmarkdown.rstudio.com/); online [tutorial](http://r4ds.had.co.nz/r-markdown.html); Mike Frank and Chris Hartgerink's [tutorial](https://libscie.github.io/rmarkdown-workshop/handout.html)
 - Similar to Mathematica notebooks, [Jupyter notebooks](http://jupyter.org)
 - R Markdown extends Markdown
@@ -367,9 +390,10 @@ source("R/Visualize_data.R")
 - List item 2
     1. Numbered item
 
-**Bold text** and *italicized text* and ~~struck-through text~~
+**Bold text** and *italicized text* 
+~~struck-through text~~
 
-`Monospace font for code or computer commands`
+`Monospace font for code`
 
 > Box quote
 
@@ -385,9 +409,10 @@ LaTex equations: $E=mc^2$
 - List item 2
     1. Numbered item
     
-**Bold text** and *italicized text* and ~~struck-through text~~
+**Bold text** and *italicized text*
+~~struck-through text~~
 
-`Monospace font for code or computer commands`
+`Monospace font for code`
 
 > Box quote
 
@@ -399,41 +424,48 @@ LaTex equations: $E=mc^2$
 
 > One tool to rule them all and in the R-ness, bind them.
 
-## *Why* write reproducible papers/reports in R Markdown?
+## Write reproducible papers/reports in R Markdown?
 
 **[Mike Frank & Chris Hartgerink's tutorial](https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd) on GitHub**.
 
-> There are three reasons to write reproducible papers. To be right, to be reproducible, and to be efficient. There are more, but these are convincing to us. In more depth:
+## Why write reproducible papers?
+
+> ...To be right, to be reproducible, and to be efficient. There are more, but these are convincing to us. In more depth:
+
+<small>[Frank & Hartgerink](https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd)</small>
 
 ---
 
-> **To avoid errors**. Using an automated method for scraping APA-formatted stats out of PDFs, [Nuijten et al. 2015](http://doi.org/10.3758/s13428-015-0664-2) found that over 10% of p-values in published papers were inconsistent with the reported details of the statistical test, and 1.6% were what they called "grossly" inconsistent, e.g. difference between the p-value and the test statistic meant that one implied statistical significance and the other did not. 
-Nearly half of all papers had errors in them.
+> **To avoid errors**. Using an automated method for scraping APA-formatted stats out of PDFs, [Nuijten et al. 2015](http://doi.org/10.3758/s13428-015-0664-2) found that over 10% of p-values in published papers were inconsistent with the reported details of the statistical test, and 1.6% were what they called "grossly" inconsistent....
+
+<small>[Frank & Hartgerink](https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd)</small>
 
 ---
 
 > **To promote computational reproducibility**. 
 Computational reproducibility means that other people can take your data and get the same numbers that are in your paper. 
-Even if you don't have errors, it can still be very hard to recover the numbers from published papers because of ambiguities in analysis. 
-Creating a document that literally specifies where all the numbers come from in terms of code that operates over the data removes all this ambiguity.
+Even if you don't have errors, it can still be very hard to recover the numbers from published papers because of ambiguities in analysis.
+
+<small>[Frank & Hartgerink](https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd)</small>
 
 ---
 
 > **To create spiffy documents that can be revised easily**. 
-This is actually a really big neglected one for us. 
-At least one of us used to tweak tables and figures by hand constantly, leading to a major incentive never to rerun analyses because it would mean re-pasting and re-illustratoring all the numbers and figures in a paper...In contrast, with a reproducible document, you can just rerun with a tweak to the code. You can even specify what you want the figures and tables to look like before you're done with all the data collection (e.g., for purposes of preregistraion or a registered report).
+...At least one of us used to tweak tables and figures by hand constantly, leading to a major incentive never to rerun analyses because it would mean re-pasting and re-illustratoring all the numbers and figures in a paper...
+
+<small>[Frank & Hartgerink](https://github.com/mcfrank/openscience_tutorial/blob/master/rmarkdown_handout.Rmd)</small>
 
 ## Ways to use R Markdown
 
 - Web [pages](http://gilmore-lab.github.io/) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/gilmore-lab.github.io/master/index.Rmd)
-- [Talks](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd)
+- [Talks](gilmore-lab.github.io/DEVSEC-2018/promise-of-open-dev-sci/) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/DEVSEC-2018/master/promise-of-open-dev-sci/index.Rmd)
 - [Project notes](https://github.com/gilmore-lab/infant-moco-eeg/blob/master/plan-of-work.Rmd)
 - Documentation: [HTML](https://gilmore-lab.github.io/databrary-reqmts-specs/databrary_1.0.html) | [Rmd](https://raw.githubusercontent.com/gilmore-lab/databrary-reqmts-specs/master/databrary_1.0.Rmd)
 
 ## Ways to use R Markdown
 
 - Scriptable figures: [PDF](https://github.com/PLAY-behaviorome/site-demographics/blob/master/img/ed-attain-bars-plot-1.pdf) | [Rmd](https://raw.githubusercontent.com/PLAY-behaviorome/site-demographics/master/educational_attainment.Rmd)
-- Scriptable timelines from Datavyu files: [Example](https://github.com/PLAY-behaviorome/video-coding/blob/master/NYU020-timeline.md) | [Rmd](https://github.com/PLAY-behaviorome/video-coding/blob/master/video-code-file-export-cleaning.Rmd) 
+- Scriptable timelines from Datavyu files: [Example](https://github.com/PLAY-behaviorome/video-coding/blob/master/img/NYU019/time-line-plot-00-60-1.png?raw=true) | [Rmd](https://raw.githubusercontent.com/PLAY-behaviorome/video-coding/master/timeline.Rmd) 
 - Papers: [PDF](https://github.com/psu-psychology/r-bootcamp-2018/blob/master/talks/gilmore-hallquist-bootcamp-2018-papaja.pdf) | [Rmd](https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2018/master/talks/gilmore-hallquist-bootcamp-2018-papaja.Rmd)
 
 ## The future of R-reproducible workflows
@@ -454,6 +486,7 @@ databraryapi::login_db("rogilmore@psu.edu")
 
 ```{r, echo=TRUE}
 lego_vol <- 563
+
 databraryapi::list_volume_metadata(lego_vol) %>% 
   kable()
 ```
@@ -462,6 +495,7 @@ databraryapi::list_volume_metadata(lego_vol) %>%
 
 ```{r, echo=TRUE}
 # Plot demographic data
+
 databraryapi::summarize_demog(lego_vol)
 ```
 
@@ -469,15 +503,22 @@ databraryapi::summarize_demog(lego_vol)
 
 ```{r, echo=TRUE}
 play_pilot_vol <- 444
+
 session_id <- 18825
-(vol_444_sess_18825_assets <- databraryapi::list_assets_in_session(session.id = session_id,
-                                                                   vol.id = play_pilot_vol))
+
+databraryapi::list_assets_in_session(session.id = session_id,
+                                     vol.id = play_pilot_vol) %>%
+  select(., asset.name, permission, size) %>%
+  kable()
 ```
 
 ## Report on PLAY pilots and LEGO data
 
 ```
-rmarkdown::render('PLAY-LEGO-report.Rmd', params = list(db_account = "rogilmore@psu.edu"))
+
+rmarkdown::render('PLAY-LEGO-report.Rmd', 
+  params = list(db_account = "rogilmore@psu.edu"))
+
 ```
 
 [Rendered Report in HTML](https://gilmore-lab.github.io/2018-10-15-nyu/PLAY-LEGO-report.html)
@@ -498,15 +539,18 @@ rmarkdown::render('PLAY-LEGO-report.Rmd',
 - Databrary API returns video/audio *segments*
 - Video/audio segments can be extracted automatically from a Datavyu file
 - (Soon) export updated Datavyu file with Databrary URIs
+
+---
+
 - R Markdown document can render code in [other languages](https://bookdown.org/yihui/rmarkdown/language-engines.html), including Python, bash, Octave, Julia, Haskell, JavaScript, ...)
 - Same input -> multiple output formats
 
 ## Data repositories as "platforms for discovery"
 
+- R Markdown documents (and Jupyter notebooks) provide self-documenting records
+- Separate data (needing protection/restriction) from analysis code
 - Curate your data once (for future sharing), use it many times
 - Send colleagues/collaborators URIs for specific clips *without having to do any video editing*
-- Separate data (needing protection/restriction) from analysis code
-- R Markdown documents (and Jupyter notebooks) provide self-documenting records
 
 ## Learning more about R Markdown
 
@@ -616,15 +660,21 @@ Ossmy, Gilmore, & Adolph (in press)
 
 ---
 
-> "The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity. We regard scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy."
+> "*The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity...*"
 
-SRCD Task Force on Scientific Integrity and Openness
+<small>SRCD Task Force on Scientific Integrity and Openness</small>
 
 ---
 
->"*the principles of human subject research require an analysis of both risks and benefits...such an analysis suggests that researchers may have a positive duty to share data in order to maximize the contribution that individual participants have made.*"
+> "*We regard scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy...*"
 
-[Brakewood & Poldack, 2013](http://dx.doi.org/10.1016/j.neuroimage.2013.02.040)
+<small>SRCD Task Force on Scientific Integrity and Openness</small>
+
+---
+
+>"*...the principles of human subject research require an analysis of both risks and benefits...such an analysis suggests that researchers may have a positive duty to share data in order to maximize the contribution that individual participants have made.*"
+
+<small>[Brakewood & Poldack, 2013](http://dx.doi.org/10.1016/j.neuroimage.2013.02.040)</small>
 
 ---
 
