@@ -103,10 +103,10 @@ if (!databraryapi::login_db(params$db_account))
 
 <!-- Rigor Mortis -->
 
-## Studies are underpowered
+## Studies are underpowered {.smaller}
 
 <div class="centered">
-<img src="http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797.g003&type=large" height=500px>
+<img src="http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797.g003&type=large" width=600px>
 
 <small>[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)</small>
 </div>
@@ -114,11 +114,10 @@ if (!databraryapi::login_db(params$db_account))
 ---
 
 <div class="centered">
-> "Assuming a realistic range of prior probabilities for null hypotheses, false report probability is likely to exceed 50% for the whole literature."
+> "*Assuming a realistic range of prior probabilities for null hypotheses, false report probability is likely to exceed 50% for the whole literature.*"
 
-<small>[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)</small>
+[Szucs & Ioannides, 2017](http://doi.org/10.1371/journal.pbio.2000797)
 </div>
-
 
 ## Physics is hard
 
